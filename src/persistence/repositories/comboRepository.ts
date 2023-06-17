@@ -3,7 +3,6 @@ export class ComboRepository {
     public async findAll() {
 
         const queryString = 'SELECT id, name, price FROM combo';
-
         const result = await pool.promise().query(queryString);
         return result[0];
 
