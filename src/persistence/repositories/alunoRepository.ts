@@ -6,7 +6,7 @@ export class AlunoRepository {
     
     async getAll() {
         try {
-          return (await pool.query('SELECT * FROM users')).rows;
+          return (await pool.query('SELECT * FROM Aluno')).rows;
         } 
         catch (error) {
           console.error('Error executing query:', error);
