@@ -1,4 +1,3 @@
-import Aluno from "@src/domain/entities/aluno";
 import { AlunoRepository } from "@src/persistence/repositories/alunoRepository";
 
 export default class AlunoService {

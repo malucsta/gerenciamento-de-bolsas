@@ -1,20 +1,13 @@
-import mysql from 'mysql2';
 import * as dotenv from 'dotenv';
+import { Pool } from 'pg';
 
 dotenv.config();
 
-export const pool = mysql.createPool({
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-    host: process.env.MYSQL_HOST,
-    port: Number(process.env.MYSQL_PORT),
+export const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASS,
+  port: Number(process.env.DB_PORT),
 });
 
-export const connection = mysql.createConnection({
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-    host: process.env.MYSQL_HOST,
-    port: Number(process.env.MYSQL_PORT),
-});
