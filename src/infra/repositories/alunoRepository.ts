@@ -1,5 +1,4 @@
-import Aluno from "@src/domain/entities/aluno";
-import { pool } from '../../connection';
+import { pool } from '../connection';
 
 export class AlunoRepository {
     

@@ -1,4 +1,4 @@
-import { AlunoRepository } from "../../persistence/repositories/alunoRepository";
+import { AlunoRepository } from "../../infra/repositories/alunoRepository";
 
 export default class AlunoService {
     private alunoRepository : AlunoRepository;

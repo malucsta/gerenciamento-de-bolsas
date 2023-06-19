@@ -1,7 +1,7 @@
 import { Server } from '@overnightjs/core';
 import * as http from 'http';
 import express from 'express';
-import AlunoController from './api/controllers/alunoController';
+import AlunoController from '../infra/controllers/alunoController';
 
 export class SetupServer extends Server {
 

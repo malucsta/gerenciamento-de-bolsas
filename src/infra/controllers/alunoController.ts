@@ -1,5 +1,5 @@
 import { Controller, Get } from "@overnightjs/core";
-import AlunoService from "../../application/services/alunoService";
+import AlunoService from "../../domain/services/alunoService";
 import { Request, Response } from "express";
 
 @Controller('api/aluno')
