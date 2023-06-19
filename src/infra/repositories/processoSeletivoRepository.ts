@@ -21,4 +21,13 @@ export class ProcessoSeletivoRepository {
             throw error
         }
     }
+
+    async desactivate(processoSeletivoId: number) {
+        try {
+            await pool.query(`UPDATE ProcessoSeletivo SET ativo = false WHERE id = $1;`, [processoSeletivoId])
+        } catch (error) {
+            console.error('Error executing query:', error);
+            throw error
+        }
+    }
 }

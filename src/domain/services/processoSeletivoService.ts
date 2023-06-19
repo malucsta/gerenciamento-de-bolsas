@@ -15,4 +15,8 @@ export default class ProcessoSeletivoService {
     public async findOne(processoSeletivoId: number) {
         return this.processoSeletivoRepository.findOne(processoSeletivoId)
     }
+
+    public async desactivate(processoSeletivoId: number) {
+        return this.processoSeletivoRepository.desactivate(processoSeletivoId)
+    }
 }
