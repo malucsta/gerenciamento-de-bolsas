@@ -4,7 +4,7 @@ import GrupoBolsaService from "./grupoBolsaService";
 import InstitutoService from "./institutoService";
 import ProcessoSeletivoService from "./processoSeletivoService";
 
-export default class AlunoService {
+export default class ProfessorService {
     private professorRepository : ProfessorRepository;
     private institutoService: InstitutoService;
     private processoSeletivoService: ProcessoSeletivoService;
