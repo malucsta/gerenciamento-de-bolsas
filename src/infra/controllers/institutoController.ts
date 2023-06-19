@@ -8,7 +8,7 @@ export default class InstitutoController {
     private service = new InstitutoService();
 
     @Post('')
-    public async findAll(req: Request, res: Response) {
+    public async create(req: Request, res: Response) {
         try {
             const { body: { name } } = req
             await this.service.create(name);
