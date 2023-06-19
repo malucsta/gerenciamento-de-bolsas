@@ -41,6 +41,16 @@ export default class ProfessorService {
         return this.professorRepository.setAdmin(matricula, idProcessoSeletivo)
     }
 
+    public async isAdmin(matricula: number, idProcessoSeletivo: number) {
+        const isAdmin = await this.professorRepository.isAdmin(matricula, idProcessoSeletivo)
+        if (isAdmin.length === 0) {
+            return false
+        } else {
+            return true
+        }
+    
+    }
+
     public async setOrientador(matricula: number, idBolsa: number) {
         const isProfessor = await this.findOne(matricula)
         const bolsaExists = await this.grupoBolsaService.findOne(idBolsa)

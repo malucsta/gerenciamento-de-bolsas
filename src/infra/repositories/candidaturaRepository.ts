@@ -10,6 +10,23 @@ export class CandidaturaRepository {
         console.error('Error executing query:', error);
         }
     }
+
+    async findOne(matriculaAluno: number, idProcessoSeletivo: number) {
+        try {
+            const result = (await pool.query(`
+            SELECT * FROM Candidatura 
+            WHERE matricula_aluno = $1 AND 
+            id_processoSeletivo = $2 
+            LIMIT 1
+            `,
+            [matriculaAluno, idProcessoSeletivo])).rows
+
+            return result
+        } catch (error) {
+            console.error('Error executing query:', error);
+            throw error
+        }
+    }
     
     async getAll() {
       try {

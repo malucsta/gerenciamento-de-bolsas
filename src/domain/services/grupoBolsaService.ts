@@ -1,4 +1,4 @@
-import { GrupoBolsaRepository } from "@src/infra/repositories/grupoBolsaRepository";
+import { GrupoBolsaRepository } from "../../infra/repositories/grupoBolsaRepository";
 import GrupoBolsa from "../entities/grupoBolsa";
 
 export default class GrupoBolsaService {
@@ -14,6 +14,10 @@ export default class GrupoBolsaService {
 
     public async getAll() {
         return this.grupoBolsaRepository.getAll();
+    }
+
+    public async updateRestante(idBolsa: number, restante: number) {
+        return this.grupoBolsaRepository.updateRestante(idBolsa, restante)
     }
 
     public async findOne(idBolsa: number) {

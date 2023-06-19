@@ -1,4 +1,4 @@
-import { CandidaturaRepository } from "@src/infra/repositories/candidaturaRepository";
+import { CandidaturaRepository } from "../../infra/repositories/candidaturaRepository";
 import Candidatura from "../entities/candidatura";
 
 export default class CandidaturaService {
@@ -10,6 +10,10 @@ export default class CandidaturaService {
     
     public async create(candidatura: Candidatura) {
         return this.candidaturaRepository.create(candidatura)
+    }
+
+    public async findOne(matriculaAluno: number, idProcessoSeletivo: number) {
+        return this.candidaturaRepository.findOne(matriculaAluno, idProcessoSeletivo)
     }
 
     public async getAll() {

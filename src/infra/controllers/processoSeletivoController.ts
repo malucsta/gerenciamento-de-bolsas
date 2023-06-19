@@ -37,6 +37,15 @@ export default class ProcessoSeletivoController {
         }
     }
 
+    @Post('Admit')
+    public async admit(req: Request, res: Response) {
+        try {
+            const { matriculaAluno, idProcessoSeletivo, idBolsa, matriculaProfessor } = req.body
+        } catch (error) {
+            return res.status(500).json({ errorMessage: error });
+        }
+    }
+
     @Patch('')
     public async desactivate(req: Request, res: Response) {
         try {

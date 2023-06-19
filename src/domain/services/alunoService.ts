@@ -8,14 +8,14 @@ export default class AlunoService {
     private alunoRepository : AlunoRepository;
     private institutoService: InstitutoService;
     private processoSeletivoService: ProcessoSeletivoService;
-    private cadidaturaService: CandidaturaService;
+    private candidaturaService: CandidaturaService;
 
 
     constructor() {
        this.alunoRepository = new AlunoRepository();
        this.institutoService = new InstitutoService();
        this.processoSeletivoService = new ProcessoSeletivoService();
-       this.cadidaturaService = new CandidaturaService();
+       this.candidaturaService = new CandidaturaService();
     }
     
     public async create(aluno: Aluno) {
@@ -39,7 +39,7 @@ export default class AlunoService {
             throw new Error('Bad request!')
         }
 
-        return this.cadidaturaService.create({matriculaAluno, idProcessoSeletivo, data: new Date()})
+        return this.candidaturaService.create({matriculaAluno, idProcessoSeletivo, data: new Date()})
     }
 
     public async getAll() {

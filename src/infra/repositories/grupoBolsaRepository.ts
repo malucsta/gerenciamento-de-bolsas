@@ -30,4 +30,13 @@ export class GrupoBolsaRepository {
         throw error
     }
   }
+
+  async updateRestante(idBolsa: number, restante: number) {
+    try {
+      await pool.query('UPDATE GrupoBolsa SET quantidade_restante = $1 WHERE id = $2', [restante, idBolsa])
+  } catch (error) {
+      console.error('Error executing query:', error);
+      throw error
+  }
+  }
 }
