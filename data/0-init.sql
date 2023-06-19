@@ -93,6 +93,7 @@ CREATE TABLE ProcessoSeletivo (
 	id SERIAL PRIMARY KEY,
 	data_inicio DATE,
 	data_fim DATE,
+	ativo boolean DEFAULT true,
 	id_bolsa INT,
 	FOREIGN KEY (id_bolsa) REFERENCES GrupoBolsa(id)
 );
