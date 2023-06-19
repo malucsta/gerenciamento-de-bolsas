@@ -8,6 +8,10 @@ export default class InstitutoService {
     } 
 
     public async create(name: string) {
-        return await this.institutoRepository.create(name);
+        return this.institutoRepository.create(name);
+    }
+
+    public async findOne(institutoId: number) {
+        return this.institutoRepository.findOne(institutoId)
     }
 }

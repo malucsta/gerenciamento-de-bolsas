@@ -1,30 +1,23 @@
+import Aluno from '@src/domain/entities/aluno';
 import { pool } from '../connection';
 
 export class AlunoRepository {
-    
-    async getAll() {
-        try {
-          return (await pool.query('SELECT * FROM Aluno')).rows;
-        } 
-        catch (error) {
-          console.error('Error executing query:', error);
-        }
-          
-        return null;
 
-        // if (!Array.isArray(rows)) {
-        //     throw new Error('Invalid query result');
-        // }
-
-        // console.log(rows)
-
-        // const alunos: Aluno[] = rows.map((row: any) => ({
-        //     matricula: row.matricula,
-        //     cpf: row.cpf,
-        //     nome: row.name,
-        //     idInstituto: row.idInstituto
-        // }));
-
-        // return alunos;
+  async create(aluno: Aluno) {
+    try {
+      await pool.query(`INSERT INTO Aluno (matricula, cpf, nome, id_instituto) VALUES (${aluno.matricula}, ${aluno.cpf}, ${aluno.nome}, ${aluno.idInstituto})`)
+    } catch (error) {
+      console.error('Error executing query:', error);
     }
+  }
+    
+  async getAll() {
+      try {
+        return (await pool.query('SELECT * FROM Aluno')).rows;
+      } catch (error) {
+        console.error('Error executing query:', error);
+      }
+
+      return null;
+  }
 }
