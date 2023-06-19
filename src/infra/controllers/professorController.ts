@@ -1,14 +1,13 @@
 import { Controller, Get, Post } from "@overnightjs/core";
 import AlunoService from "../../domain/services/alunoService";
 import { Request, Response } from "express";
-import InstitutoService from "../../domain/services/institutoService";
+import ProfessorService from "../../domain/services/professorService";
 import Aluno from "@src/domain/entities/aluno";
 
 @Controller('api/aluno')
-export default class AlunoController {
+export default class ProfessorController {
 
-    private alunoService = new AlunoService();
-    private institutoService = new InstitutoService()
+    private professorService = new ProfessorService();
 
 
     @Post('')

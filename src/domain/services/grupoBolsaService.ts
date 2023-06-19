@@ -15,4 +15,8 @@ export default class GrupoBolsaService {
     public async getAll() {
         return this.grupoBolsaRepository.getAll();
     }
+
+    public async findOne(idBolsa: number) {
+        return this.grupoBolsaRepository.findOne(idBolsa)
+    }
 }
