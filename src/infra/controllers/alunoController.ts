@@ -19,6 +19,17 @@ export default class AlunoController {
         }
     }
 
+    @Post('/cadidatura')
+    public async apply(req: Request, res: Response){
+        try {
+            const {matricula, idProcessoSeletivo} = req.body
+            await this.alunoService.apply(matricula, idProcessoSeletivo)
+            return res.status(201);
+        } catch (error) {
+            return res.status(500).json({ errorMessage: error });
+        }
+    }
+
     @Get('')
     public async findAll(req: Request, res: Response) {
         try {

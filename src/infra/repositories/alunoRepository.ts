@@ -10,6 +10,16 @@ export class AlunoRepository {
       console.error('Error executing query:', error);
     }
   }
+
+  async findOne(matricula: number) {
+    try {
+      const result = (await pool.query('SELECT * FROM Aluno WHERE matricula = $1 LIMIT 1', [matricula])).rows
+      return result
+  } catch (error) {
+      console.error('Error executing query:', error);
+      throw error
+  }
+  }
     
   async getAll() {
       try {
