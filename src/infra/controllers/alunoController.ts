@@ -13,19 +13,22 @@ export default class AlunoController {
         try {
             const aluno: Aluno = req.body
             await this.alunoService.create(aluno)
-            return res.status(201);
+
+            return res.status(201).json({ message: 'Success' });
         } catch (error) {
             return res.status(500).json({ errorMessage: error });
         }
     }
 
-    @Post('/cadidatura')
+    @Post('candidatura')
     public async apply(req: Request, res: Response){
         try {
             const {matricula, idProcessoSeletivo} = req.body
             await this.alunoService.apply(matricula, idProcessoSeletivo)
-            return res.status(201);
+            
+            return res.status(201).json({ message: 'Success' });
         } catch (error) {
+            console.error(error)
             return res.status(500).json({ errorMessage: error });
         }
     }

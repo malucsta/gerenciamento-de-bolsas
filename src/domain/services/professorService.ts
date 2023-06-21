@@ -1,4 +1,4 @@
-import { ProfessorRepository } from "@src/infra/repositories/professorRepository";
+import { ProfessorRepository } from "../../infra/repositories/professorRepository";
 import Professor from "../entities/professor";
 import GrupoBolsaService from "./grupoBolsaService";
 import InstitutoService from "./institutoService";

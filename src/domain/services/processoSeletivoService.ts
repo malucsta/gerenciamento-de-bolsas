@@ -17,6 +17,7 @@ export default class ProcessoSeletivoService {
         if(grupoBolsa.length < 1) {
             throw new Error('Grupo Bolsa not found')
         }
+
         return this.processoSeletivoRepository.create(processoSeletivo);
     }
 

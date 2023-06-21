@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import ProfessorService from "../../domain/services/professorService";
 import Professor from "@src/domain/entities/professor";
 
-@Controller('api/aluno')
+@Controller('api/professor')
 export default class ProfessorController {
 
     private professorService = new ProfessorService();
@@ -14,17 +14,17 @@ export default class ProfessorController {
         try {
             const professor: Professor = req.body
             await this.professorService.create(professor)
-            return res.status(201);
+            return res.status(201).json({message: 'Success'});
         } catch (error) {
             return res.status(500).json({ errorMessage: error });
         }
     }
 
     @Get('')
-    public async findAll(req: Request, res: Response) {
+    public async findOne(req: Request, res: Response) {
         try {
-            const professor: Professor = req.body
-            const result = await this.professorService.findOne(professor.matricula);
+            const { matricula } = req.query
+            const result = await this.professorService.findOne(Number(matricula));
             return res.status(200).json(result);
 
         } catch (error) {

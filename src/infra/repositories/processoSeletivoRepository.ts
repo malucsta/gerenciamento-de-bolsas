@@ -4,7 +4,7 @@ import { pool } from '../connection';
 export class ProcessoSeletivoRepository {
     async create(processoSeletivo: ProcessoSeletivo) {
         try {
-            await pool.query(`INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa) VALUES (${processoSeletivo.id}, ${processoSeletivo.dataInicio}, ${processoSeletivo.dataFim}, ${processoSeletivo.idBolsa})`)
+            await pool.query(`INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa) VALUES ($1, $2, $3, $4)`, [processoSeletivo.id, processoSeletivo.dataInicio, processoSeletivo.dataFim, processoSeletivo.idBolsa])
         } catch (error) {
             console.error('Error executing query:', error);
             throw error

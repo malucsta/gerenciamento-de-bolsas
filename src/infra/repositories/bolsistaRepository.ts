@@ -5,7 +5,7 @@ export class BolsistaRepository {
 
   async create(bolsista: Bolsista) {
     try {
-      await pool.query(`INSERT INTO Bolsista (matricula_aluno, id_bolsa) VALUES (${bolsista.matriculaAluno}, ${bolsista.idBolsa})`)
+      await pool.query(`INSERT INTO Bolsista (matricula_aluno, id_bolsa) VALUES ($1, $2)`, [bolsista.matriculaAluno, bolsista.idBolsa])
     } catch (error) {
       console.error('Error executing query:', error);
     }

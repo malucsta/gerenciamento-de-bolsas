@@ -1,6 +1,5 @@
-import { BolsistaRepository } from "@src/infra/repositories/bolsistaRepository";
+import { BolsistaRepository } from "../../infra/repositories/bolsistaRepository";
 import Candidatura from "../entities/candidatura";
-import GrupoBolsa from "../entities/grupoBolsa";
 import CandidaturaService from "./candidaturaService";
 import GrupoBolsaService from "./grupoBolsaService";
 import ProfessorService from "./professorService";
@@ -20,13 +19,14 @@ export default class BolsistaService {
     }
     
     public async create(matriculaAluno: number, idProcessoSeletivo: number, idBolsa: number, matriculaProfessor: number) {
-        const bolsaExists: GrupoBolsa[] = await this.grupoBolsaService.findOne(idBolsa)
+        const bolsaExists = await this.grupoBolsaService.findOne(idBolsa)
         const candidaturaExists: Candidatura[] = await this.candidaturaService.findOne(matriculaAluno, idBolsa)
 
         if(bolsaExists.length < 1 || candidaturaExists.length < 1) {
             throw new Error('Bolsa or Candidatura not found!')
         }
         const [bolsa] = bolsaExists
+
         if (bolsa.quantidadeRestatnte > 0 /*|| comparar bolsa.dataFim com date.now()*/) {
             throw new Error('Invalid Bolsa!')
         }
@@ -34,8 +34,10 @@ export default class BolsistaService {
         if (!(await this.professorService.isAdmin(matriculaProfessor, idProcessoSeletivo))) {
             throw new Error('Professor is not Admin!')
         }
+
+        // transformar em transaction
         await this.bolsistaRepository.create({matriculaAluno, idBolsa})
-        await this.grupoBolsaService.updateRestante(idBolsa, bolsa.quantidadeRestatnte - 1)
+        await this.grupoBolsaService.updateRestante(idBolsa, bolsa.quantidade_restante - 1)
         
     }
 

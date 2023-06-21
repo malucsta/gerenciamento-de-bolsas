@@ -5,5 +5,5 @@ try {
     server.init();
     server.start();
 } catch (error) {
-    console.log('Something went wrong...');
+    console.error('Something went wrong...');
 }

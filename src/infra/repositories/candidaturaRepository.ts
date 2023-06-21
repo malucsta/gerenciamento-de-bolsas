@@ -5,7 +5,7 @@ export class CandidaturaRepository {
 
     async create(candidatura: Candidatura) {
         try {
-        await pool.query(`INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (${candidatura.matriculaAluno}, ${candidatura.idProcessoSeletivo}, ${candidatura.data})`)
+        await pool.query(`INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES ($1, $2, $3)`, [candidatura.matriculaAluno, candidatura.idProcessoSeletivo, candidatura.data])
         } catch (error) {
         console.error('Error executing query:', error);
         }
@@ -13,13 +13,7 @@ export class CandidaturaRepository {
 
     async findOne(matriculaAluno: number, idProcessoSeletivo: number) {
         try {
-            const result = (await pool.query(`
-            SELECT * FROM Candidatura 
-            WHERE matricula_aluno = $1 AND 
-            id_processoSeletivo = $2 
-            LIMIT 1
-            `,
-            [matriculaAluno, idProcessoSeletivo])).rows
+            const result = (await pool.query(`SELECT * FROM Candidatura WHERE matricula_aluno = $1 AND id_processoSeletivo = $2 LIMIT 1`, [matriculaAluno, idProcessoSeletivo])).rows
 
             return result
         } catch (error) {

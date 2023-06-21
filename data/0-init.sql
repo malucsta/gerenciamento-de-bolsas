@@ -51,11 +51,11 @@ CREATE TABLE GrupoBolsa (
 	data_inicio DATE,
 	data_fim DATE
 );
-INSERT INTO GrupoBolsa (id, nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES (1, 'Research Scholarship', 500, 10, 10, '2023-07-01', '2023-12-31');
-INSERT INTO GrupoBolsa (id, nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES (2, 'STEM Fellowship', 1000, 5, 5, '2023-09-01', '2024-08-31');
-INSERT INTO GrupoBolsa (id, nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES (3, 'Arts Grant', 750, 8, 8, '2023-08-15', '2023-11-30');
-INSERT INTO GrupoBolsa (id, nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES (4, 'Business Internship', 800, 6, 6, '2023-07-15', '2024-02-28');
-INSERT INTO GrupoBolsa (id, nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES (5, 'Science Research Grant', 1200, 3, 3, '2023-10-01', '2024-03-31');
+INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES ('Research Scholarship', 500, 10, 10, '2023-07-01', '2023-12-31');
+INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES ('STEM Fellowship', 1000, 5, 5, '2023-09-01', '2024-08-31');
+INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES ('Arts Grant', 750, 8, 8, '2023-08-15', '2023-11-30');
+INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES ('Business Internship', 800, 6, 6, '2023-07-15', '2024-02-28');
+INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES ('Science Research Grant', 1200, 3, 3, '2023-10-01', '2024-03-31');
 
 
 -- ORIENTADOR

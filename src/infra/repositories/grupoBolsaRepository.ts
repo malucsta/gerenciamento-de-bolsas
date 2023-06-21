@@ -5,9 +5,19 @@ export class GrupoBolsaRepository {
 
   async create(grupoBolsa: GrupoBolsa) {
     try {
-      await pool.query(`INSERT INTO GrupoBolsa (id, nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES (${grupoBolsa.id}, ${grupoBolsa.nome}, ${grupoBolsa.remuneracao}, ${grupoBolsa.quantidadeTotal}, ${grupoBolsa.quantidadeRestatnte}, ${grupoBolsa.dataInicio}, ${grupoBolsa.dataFim})`)
+      const values = [
+        grupoBolsa.nome, 
+        grupoBolsa.remuneracao, 
+        grupoBolsa.quantidadeTotal, 
+        grupoBolsa.quantidadeRestante, 
+        grupoBolsa.dataInicio, 
+        grupoBolsa.dataFim
+      ]
+      
+      return pool.query(`INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`, values)
     } catch (error) {
       console.error('Error executing query:', error);
+      throw error
     }
   }
     
@@ -16,9 +26,8 @@ export class GrupoBolsaRepository {
         return (await pool.query('SELECT * FROM GrupoBolsa')).rows;
       } catch (error) {
         console.error('Error executing query:', error);
+        throw error
       }
-
-      return null;
   }
 
   async findOne(idBolsa: number) {

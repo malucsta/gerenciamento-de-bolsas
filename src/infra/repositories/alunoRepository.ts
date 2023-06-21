@@ -5,14 +5,16 @@ export class AlunoRepository {
 
   async create(aluno: Aluno) {
     try {
-      await pool.query(`INSERT INTO Aluno (matricula, cpf, nome, id_instituto) VALUES (${aluno.matricula}, ${aluno.cpf}, ${aluno.nome}, ${aluno.idInstituto})`)
+      return pool.query(`INSERT INTO Aluno (matricula, cpf, nome, id_instituto) VALUES ($1, $2, $3, $4)`,[aluno.matricula, aluno.cpf, aluno.nome, aluno.idInstituto])
     } catch (error) {
       console.error('Error executing query:', error);
+      throw error
     }
   }
 
   async findOne(matricula: number) {
     try {
+      // TODO: colocar um JOIN com candidaturas nessa query
       const result = (await pool.query('SELECT * FROM Aluno WHERE matricula = $1 LIMIT 1', [matricula])).rows
       return result
   } catch (error) {

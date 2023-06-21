@@ -3,7 +3,7 @@ export default interface GrupoBolsa {
     nome: string,
     remuneracao: number,
     quantidadeTotal: number,
-    quantidadeRestatnte: number,
+    quantidadeRestante: number,
     dataInicio: Date,
     dataFim: Date
 }

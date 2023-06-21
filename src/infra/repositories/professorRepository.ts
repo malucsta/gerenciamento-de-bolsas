@@ -4,16 +4,7 @@ import { pool } from '../connection';
 export class ProfessorRepository {
     async create(professor: Professor) {
         try {
-            await pool.query(`
-            INSERT INTO Professor 
-            (matricula, cpf, nome, id_instituto) 
-            VALUES (
-                ${professor.matricula}, 
-                ${professor.cpf}, 
-                ${professor.nome}, 
-                ${professor.idInstituto}
-                )
-            `)
+            return pool.query(`INSERT INTO Professor (matricula, cpf, nome, id_instituto) VALUES ($1, $2, $3, $4)`, [professor.matricula, professor.cpf, professor.nome, professor.idInstituto])
             
         } catch (error) {
             console.error('Error executing query:', error);
@@ -24,11 +15,7 @@ export class ProfessorRepository {
 
     async setAdmin(matricula: number, idProcessoSeletivo: number) {
         try {
-            await pool.query(`
-            INSERT INTO Administrador 
-            (matricula_professor, id_processoSeletivo) 
-            VALUES (${matricula}, ${idProcessoSeletivo})
-            `)
+            return pool.query(` INSERT INTO Administrador (matricula_professor, id_processoSeletivo) VALUES ($1, $2)`, [matricula, idProcessoSeletivo])
 
         } catch (error) {
             console.error('Error executing query:', error);
@@ -38,13 +25,10 @@ export class ProfessorRepository {
 
     async isAdmin(matricula: number, idProcessoSeletivo: number) {
         try {
-            const result = (await pool.query(`
-            SELECT * FROM Administrador 
-            WHERE matricula_professor = $1 AND 
-            id_processoSeletivo = $2 
-            LIMIT 1
-            `,
-            [matricula, idProcessoSeletivo])).rows
+            const result = (await pool.query(
+                `SELECT * FROM Administrador WHERE matricula_professor = $1 AND id_processoSeletivo = $2 LIMIT 1`,
+                [matricula, idProcessoSeletivo]
+                )).rows
 
             return result
         } catch (error) {
@@ -55,11 +39,7 @@ export class ProfessorRepository {
 
     async setOrientador(matricula: number, idBolsa: number) {
         try {
-            await pool.query(`
-            INSERT INTO Orientador 
-            (matricula_professor, id_bolsa) 
-            VALUES (${matricula}, ${idBolsa})
-            `)
+            await pool.query(`INSERT INTO Orientador (matricula_professor, id_bolsa) VALUES ($1, $2)`, [matricula, idBolsa])
             
         } catch (error) {
             console.error('Error executing query:', error);
@@ -69,11 +49,8 @@ export class ProfessorRepository {
 
     async findOne(matricula: number) {
         try {
-            const result = (await pool.query(`
-            SELECT * FROM Professor 
-            WHERE matricula = $1 
-            LIMIT 1`, 
-            [matricula])).rows
+            //TODO: Colocar um Join com Orientador e Administrador nessa Query
+            const result = (await pool.query(`SELECT * FROM Professor WHERE matricula = $1 LIMIT 1`,[matricula])).rows
             
             return result
         } catch (error) {
