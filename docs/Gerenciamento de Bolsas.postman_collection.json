@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "7c4591c7-fe9e-43c3-bad1-e01f0b71190b",
+		"name": "Gerenciamento de Bolsas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28112856"
+	},
+	"item": [
+		{
+			"name": "Aluno",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3000/api/aluno"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"matricula\": 1416,\n        \"cpf\": \"77777777772\",\n        \"nome\": \"Vini 12345\",\n        \"idInstituto\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/aluno"
+					},
+					"response": []
+				},
+				{
+					"name": "apply",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"matricula\": 1411,\n    \"idProcessoSeletivo\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/aluno/candidatura"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Professor",
+			"item": [
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/professor?matricula=12345",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"professor"
+							],
+							"query": [
+								{
+									"key": "matricula",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"matricula\": 77776,\n    \"cpf\": \"77777777776\",\n    \"nome\": \"Vini Vini Vini T3\",\n    \"idInstituto\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/professor"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GrupoBolsa",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3000/api/grupo-bolsa"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"grupoBolsa\": {\n        \"nome\": \"Bolsa Teste 18\",\n        \"remuneracao\": 25000,\n        \"quantidadeTotal\": 2,\n        \"quantidadeRestante\": 2,\n        \"dataInicio\": \"2023-07-15T03:00:00.000Z\",\n        \"dataFim\": \"2024-02-28T03:00:00.000Z\"\n    },\n    \"matriculaProfessor\": 12345\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/grupo-bolsa"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProcessoSeletivo",
+			"item": [
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/processo-seletivo?idprocessoSeletivo=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"processo-seletivo"
+							],
+							"query": [
+								{
+									"key": "idprocessoSeletivo",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"matriculaProfessor\": 12345,\n    \"processoSeletivo\": {\n        \"id\": 777,\n        \"dataInicio\": \"2024-06-01T03:00:00.000Z\",\n        \"dataFim\": \"2024-07-15T03:00:00.000Z\",\n        \"ativo\": true,\n        \"idBolsa\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/processo-seletivo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"processo-seletivo"
+							],
+							"query": [
+								{
+									"key": "idprocessoSeletivo",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"matriculaAluno\":1412,\n    \"idProcessoSeletivo\":1,\n    \"idBolsa\":1,\n    \"matriculaProfessor\": 12345\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/api/processo-seletivo/admit"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidatura",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3000/api/candidatura"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
