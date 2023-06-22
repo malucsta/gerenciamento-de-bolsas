@@ -16,6 +16,10 @@ export default class CandidaturaService {
         return this.candidaturaRepository.findOne(matriculaAluno, idProcessoSeletivo)
     }
 
+    public async findByProcessoSeletivo(idProcessoSeletivo: number) {
+        return this.candidaturaRepository.findByProcessoSeletivo(idProcessoSeletivo)
+    }
+
     public async getAll() {
         return this.candidaturaRepository.getAll();
     }

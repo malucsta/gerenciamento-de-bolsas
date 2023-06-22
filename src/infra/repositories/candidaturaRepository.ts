@@ -21,6 +21,17 @@ export class CandidaturaRepository {
             throw error
         }
     }
+
+    async findByProcessoSeletivo(idProcessoSeletivo: number) {
+      try {
+        const query = `SELECT matricula_aluno, data FROM Candidatura WHERE id_processoSeletivo = $1 ORDER BY data ASC`;
+        const result = (await pool.query(query, [idProcessoSeletivo])).rows
+        return result
+      } catch (error) {
+          console.error('Error executing query:', error);
+          throw error
+      }
+  }
     
     async getAll() {
       try {
