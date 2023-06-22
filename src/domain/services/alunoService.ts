@@ -35,9 +35,8 @@ export default class AlunoService {
         const processoSeletivo = await this.processoSeletivoService.findOne(idProcessoSeletivo)
         const aluno = await this.findOne(matriculaAluno)
 
-        if (processoSeletivo.length < 1 || aluno.length < 1) {
-            throw new Error('Bad request!')
-        }
+        if (processoSeletivo.length < 1 || aluno.length < 1) throw new Error('Bad request!')
+        if (processoSeletivo[0].ativo === false) throw new Error('Processo seletivo inativo!');
 
         return this.candidaturaService.create({matriculaAluno, idProcessoSeletivo, data: new Date()})
     }
