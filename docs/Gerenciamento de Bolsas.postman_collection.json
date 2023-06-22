@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7c4591c7-fe9e-43c3-bad1-e01f0b71190b",
+		"_postman_id": "8b0f680d-c37e-4ff6-9cfc-857eb2142d1f",
 		"name": "Gerenciamento de Bolsas",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "28112856"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22007743"
 	},
 	"item": [
 		{
@@ -14,7 +14,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "localhost:3000/api/aluno"
+						"url": {
+							"raw": "localhost:3000/api/aluno",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"aluno"
+							]
+						}
 					},
 					"response": []
 				},
@@ -32,7 +42,17 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/aluno"
+						"url": {
+							"raw": "localhost:3000/api/aluno",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"aluno"
+							]
+						}
 					},
 					"response": []
 				},
@@ -50,7 +70,27 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/aluno/candidatura"
+						"url": {
+							"raw": "localhost:3000/api/aluno/candidatura",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"aluno",
+								"candidatura"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "Resposta\n\n```\n[\n    {\n        \"matricula\": 12345,\n        \"cpf\": \"12345678901\",\n        \"nome\": \"John Doe\",\n        \"id_instituto\": 1,\n        \"processos_seletivos\": [\n            1,\n            2\n        ]\n    }\n]\n\n\n```"
 					},
 					"response": []
 				}
@@ -65,20 +105,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/professor?matricula=12345",
+							"raw": "localhost:3000/api/professor/67890",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"api",
-								"professor"
-							],
-							"query": [
-								{
-									"key": "matricula",
-									"value": "12345"
-								}
+								"professor",
+								"67890"
 							]
 						}
 					},
@@ -98,7 +133,17 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/professor"
+						"url": {
+							"raw": "localhost:3000/api/professor",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"professor"
+							]
+						}
 					},
 					"response": []
 				}
@@ -112,7 +157,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "localhost:3000/api/grupo-bolsa"
+						"url": {
+							"raw": "localhost:3000/api/grupo-bolsa",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"grupo-bolsa"
+							]
+						}
 					},
 					"response": []
 				},
@@ -130,7 +185,17 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/grupo-bolsa"
+						"url": {
+							"raw": "localhost:3000/api/grupo-bolsa",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"grupo-bolsa"
+							]
+						}
 					},
 					"response": []
 				}
@@ -213,7 +278,18 @@
 								}
 							}
 						},
-						"url": "localhost:3000/api/processo-seletivo/admit"
+						"url": {
+							"raw": "localhost:3000/api/processo-seletivo/admit",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"processo-seletivo",
+								"admit"
+							]
+						}
 					},
 					"response": []
 				}
@@ -227,7 +303,25 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "localhost:3000/api/candidatura"
+						"url": {
+							"raw": "localhost:3000/api/candidatura",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"candidatura"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByProcessoSeletivo",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

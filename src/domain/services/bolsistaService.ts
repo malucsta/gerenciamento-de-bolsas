@@ -1,3 +1,4 @@
+import { TransactionRepository } from "../../infra/repositories/transactionRepository";
 import { BolsistaRepository } from "../../infra/repositories/bolsistaRepository";
 import Candidatura from "../entities/candidatura";
 import CandidaturaService from "./candidaturaService";
@@ -9,6 +10,7 @@ export default class BolsistaService {
     private candidaturaService: CandidaturaService;
     private grupoBolsaService: GrupoBolsaService;
     private professorService: ProfessorService;
+    private transactionRepository: TransactionRepository;
 
 
     constructor() {
@@ -16,6 +18,7 @@ export default class BolsistaService {
        this.candidaturaService = new CandidaturaService();
        this.grupoBolsaService = new GrupoBolsaService();
        this.professorService = new ProfessorService();
+       this.transactionRepository = new TransactionRepository();
     }
     
     public async create(matriculaAluno: number, idProcessoSeletivo: number, idBolsa: number, matriculaProfessor: number) {
@@ -27,23 +30,19 @@ export default class BolsistaService {
         }
         const [bolsa] = bolsaExists
 
-        if (bolsa.quantidadeRestatnte > 0 /*|| comparar bolsa.dataFim com date.now()*/) {
-            throw new Error('Invalid Bolsa!')
+        if (bolsa.quantidade_restante == 0 /*|| comparar bolsa.dataFim com date.now()*/) {
+            throw new Error('Não há bolsas disponíveis!')
         }
 
         if (!(await this.professorService.isAdmin(matriculaProfessor, idProcessoSeletivo))) {
             throw new Error('Professor is not Admin!')
         }
 
-        // transformar em transaction
-        await this.bolsistaRepository.create({matriculaAluno, idBolsa})
-        await this.grupoBolsaService.updateRestante(idBolsa, bolsa.quantidade_restante - 1)
-        
+        await this.transactionRepository.inserirBolsistaEAtualizarGrupoBolsa({matriculaAluno, idBolsa}, bolsa.quantidade_restante - 1)
     }
 
     public async findOne(matricula: number) {
         return this.bolsistaRepository.findOne(matricula)
-
     }
     
     public async getAll() {
