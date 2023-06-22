@@ -14,9 +14,8 @@ export class AlunoRepository {
 
   async findOne(matricula: number) {
     try {
-      // TODO: colocar um JOIN com candidaturas nessa query
-      const result = (await pool.query('SELECT * FROM Aluno WHERE matricula = $1 LIMIT 1', [matricula])).rows
-      return result
+      const alunoQuery =  `SELECT Aluno.matricula, Aluno.cpf, Aluno.nome, Aluno.id_instituto FROM Aluno WHERE matricula = $1 LIMIT 1`;
+      return (await pool.query(alunoQuery, [matricula])).rows;
   } catch (error) {
       console.error('Error executing query:', error);
       throw error
@@ -25,7 +24,7 @@ export class AlunoRepository {
     
   async getAll() {
       try {
-        return (await pool.query('SELECT * FROM Aluno')).rows;
+        return (await pool.query('SELECT Aluno.matricula, Aluno.cpf, Aluno.nome, Aluno.id_instituto FROM Aluno')).rows;
       } catch (error) {
         console.error('Error executing query:', error);
       }

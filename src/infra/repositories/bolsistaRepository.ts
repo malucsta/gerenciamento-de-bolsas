@@ -13,7 +13,7 @@ export class BolsistaRepository {
 
   async findOne(matriculaAluno: number) {
     try {
-      const result = (await pool.query('SELECT * FROM Bolsista WHERE matricula_aluno = $1 LIMIT 1', [matriculaAluno])).rows
+      const result = (await pool.query('SELECT matricula_aluno, id_bolsa FROM Bolsista WHERE matricula_aluno = $1 LIMIT 1', [matriculaAluno])).rows
       return result
   } catch (error) {
       console.error('Error executing query:', error);
@@ -23,7 +23,7 @@ export class BolsistaRepository {
     
   async getAll() {
       try {
-        return (await pool.query('SELECT * FROM Bolsista')).rows;
+        return (await pool.query('SELECT matricula_aluno, id_bolsa FROM Bolsista')).rows;
       } catch (error) {
         console.error('Error executing query:', error);
       }

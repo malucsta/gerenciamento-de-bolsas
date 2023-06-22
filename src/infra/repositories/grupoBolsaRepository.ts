@@ -23,7 +23,7 @@ export class GrupoBolsaRepository {
     
   async getAll() {
       try {
-        return (await pool.query('SELECT * FROM GrupoBolsa')).rows;
+        return (await pool.query('SELECT id, nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim FROM GrupoBolsa')).rows;
       } catch (error) {
         console.error('Error executing query:', error);
         throw error
@@ -32,7 +32,7 @@ export class GrupoBolsaRepository {
 
   async findOne(idBolsa: number) {
     try {
-        const result = (await pool.query('SELECT * FROM GrupoBolsa WHERE id = $1 LIMIT 1', [idBolsa])).rows
+        const result = (await pool.query('SELECT id, nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim FROM GrupoBolsa WHERE id = $1 LIMIT 1', [idBolsa])).rows
         return result
     } catch (error) {
         console.error('Error executing query:', error);

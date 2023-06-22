@@ -13,7 +13,6 @@ export default class AlunoController {
         try {
             const aluno: Aluno = req.body
             await this.alunoService.create(aluno)
-
             return res.status(201).json({ message: 'Success' });
         } catch (error) {
             return res.status(500).json({ errorMessage: error });
@@ -37,6 +36,18 @@ export default class AlunoController {
     public async findAll(req: Request, res: Response) {
         try {
             const result = await this.alunoService.getAll();
+            return res.status(200).json(result);
+
+        } catch (error) {
+            return res.status(500).json({ errorMessage: error });
+        }
+    }
+
+    @Get(':id')
+    public async findOne(req: Request, res: Response) {
+        try {
+            const id = Number(req.params.id)
+            const result = await this.alunoService.findOne(id);
             return res.status(200).json(result);
 
         } catch (error) {

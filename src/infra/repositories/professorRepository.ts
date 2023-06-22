@@ -26,7 +26,7 @@ export class ProfessorRepository {
     async isAdmin(matricula: number, idProcessoSeletivo: number) {
         try {
             const result = (await pool.query(
-                `SELECT * FROM Administrador WHERE matricula_professor = $1 AND id_processoSeletivo = $2 LIMIT 1`,
+                `SELECT matricula_professor, id_processoSeletivo FROM Administrador WHERE matricula_professor = $1 AND id_processoSeletivo = $2 LIMIT 1`,
                 [matricula, idProcessoSeletivo]
                 )).rows
 
@@ -49,9 +49,7 @@ export class ProfessorRepository {
 
     async findOne(matricula: number) {
         try {
-            //TODO: Colocar um Join com Orientador e Administrador nessa Query
-            const result = (await pool.query(`SELECT * FROM Professor WHERE matricula = $1 LIMIT 1`,[matricula])).rows
-            
+            const result = (await pool.query(`SELECT matricula, cpf, nome, id_instituto FROM Professor WHERE matricula = $1 LIMIT 1`,[matricula])).rows
             return result
         } catch (error) {
             console.error('Error executing query:', error);

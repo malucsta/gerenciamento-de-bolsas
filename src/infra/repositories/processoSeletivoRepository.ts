@@ -14,7 +14,7 @@ export class ProcessoSeletivoRepository {
 
     async findOne(processoSeletivoId: number) {
         try {
-            const result = (await pool.query('SELECT * FROM ProcessoSeletivo WHERE id = $1 LIMIT 1', [processoSeletivoId])).rows
+            const result = (await pool.query('SELECT id, data_inicio, data_fim, ativo, id_bolsa FROM ProcessoSeletivo WHERE id = $1 LIMIT 1', [processoSeletivoId])).rows
             return result
         } catch (error) {
             console.error('Error executing query:', error);

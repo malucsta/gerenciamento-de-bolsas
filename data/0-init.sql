@@ -129,6 +129,7 @@ CREATE TABLE Candidatura (
 	FOREIGN KEY (id_processoSeletivo) REFERENCES ProcessoSeletivo(id)
 );
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (12345, 1, '2023-06-10 09:30:00');
+INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (12345, 2, '2023-06-10 09:30:00');
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (67890, 1, '2023-06-12 14:45:00');
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (54321, 2, '2023-08-05 11:00:00');
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (98765, 3, '2023-07-25 16:20:00');

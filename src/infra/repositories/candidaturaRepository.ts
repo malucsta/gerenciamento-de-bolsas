@@ -13,9 +13,9 @@ export class CandidaturaRepository {
 
     async findOne(matriculaAluno: number, idProcessoSeletivo: number) {
         try {
-            const result = (await pool.query(`SELECT * FROM Candidatura WHERE matricula_aluno = $1 AND id_processoSeletivo = $2 LIMIT 1`, [matriculaAluno, idProcessoSeletivo])).rows
-
-            return result
+          const query = `SELECT matricula_aluno, id_processoSeletivo, data FROM Candidatura WHERE matricula_aluno = $1 AND id_processoSeletivo = $2 LIMIT 1`;
+          const result = (await pool.query(query, [matriculaAluno, idProcessoSeletivo])).rows
+          return result
         } catch (error) {
             console.error('Error executing query:', error);
             throw error
@@ -24,7 +24,7 @@ export class CandidaturaRepository {
     
     async getAll() {
       try {
-        return (await pool.query('SELECT * FROM Candidatura')).rows;
+        return (await pool.query('SELECT matricula_aluno, id_processoSeletivo, data FROM Candidatura')).rows;
       } catch (error) {
         console.error('Error executing query:', error);
       }
