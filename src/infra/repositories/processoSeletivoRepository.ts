@@ -22,6 +22,16 @@ export class ProcessoSeletivoRepository {
         }
     }
 
+    async findOneByBolsa(bolsaId: number) {
+        try {
+            const result = (await pool.query('SELECT id FROM ProcessoSeletivo WHERE id_bolsa = $1 and ativo = true', [bolsaId])).rows
+            return result
+        } catch (error) {
+            console.error('Error executing query:', error);
+            throw error
+        }
+    }
+
     async desactivate(processoSeletivoId: number) {
         try {
             await pool.query(`UPDATE ProcessoSeletivo SET ativo = false WHERE id = $1;`, [processoSeletivoId])
