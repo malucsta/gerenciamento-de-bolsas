@@ -14,7 +14,13 @@ export class AlunoRepository {
 
   async findOne(matricula: number) {
     try {
-      const alunoQuery =  `SELECT Aluno.matricula, Aluno.cpf, Aluno.nome, Aluno.id_instituto FROM Aluno WHERE matricula = $1 LIMIT 1`;
+      const alunoQuery =  `
+      SELECT A.*, ARRAY_AGG(C.id_processoSeletivo) AS processos_seletivos
+      FROM Aluno A
+      INNER JOIN Candidatura C ON A.matricula = C.matricula_aluno
+      INNER JOIN processoseletivo P ON C.id_processoseletivo = P.id
+      WHERE A.matricula = $1 and P.ativo = true
+      GROUP BY A.matricula;`;
       return (await pool.query(alunoQuery, [matricula])).rows;
   } catch (error) {
       console.error('Error executing query:', error);

@@ -20,10 +20,10 @@ export default class ProfessorController {
         }
     }
 
-    @Get('')
+    @Get(':matricula')
     public async findOne(req: Request, res: Response) {
         try {
-            const { matricula } = req.query
+            const { matricula } = req.params;
             const result = await this.professorService.findOne(Number(matricula));
             return res.status(200).json(result);
 

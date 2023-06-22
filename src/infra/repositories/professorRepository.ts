@@ -49,7 +49,19 @@ export class ProfessorRepository {
 
     async findOne(matricula: number) {
         try {
-            const result = (await pool.query(`SELECT matricula, cpf, nome, id_instituto FROM Professor WHERE matricula = $1 LIMIT 1`,[matricula])).rows
+            const query = `
+            SELECT P.matricula,
+                P.nome,
+                ARRAY_AGG(A.id_processoSeletivo) AS processos_administrados,
+                ARRAY_AGG(O.id_bolsa) AS bolsas_orientadas
+            FROM Professor P
+            LEFT JOIN Administrador A ON P.matricula = A.matricula_professor
+            INNER JOIN processoseletivo PS ON PS.id = A.id_processoseletivo
+            LEFT JOIN Orientador O ON P.matricula = O.matricula_professor
+            WHERE P.matricula = $1 and PS.ativo = true
+            GROUP BY P.matricula, P.nome;
+            `;
+            const result = (await pool.query(query,[matricula])).rows
             return result
         } catch (error) {
             console.error('Error executing query:', error);

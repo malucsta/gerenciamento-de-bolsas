@@ -102,6 +102,7 @@ INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa) VALUES (2, '2
 INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa) VALUES (3, '2023-07-15', '2023-08-31', 3);
 INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa) VALUES (4, '2023-09-01', '2023-10-31', 4);
 INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa) VALUES (5, '2023-10-15', '2023-12-15', 5);
+INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa, ativo) VALUES (6, '2023-01-01', '2023-01-15', 5, false);
 
 
 -- ADMINISTRADOR
@@ -117,6 +118,7 @@ INSERT INTO Administrador (matricula_professor, id_processoSeletivo) VALUES (678
 INSERT INTO Administrador (matricula_professor, id_processoSeletivo) VALUES (54321, 3);
 INSERT INTO Administrador (matricula_professor, id_processoSeletivo) VALUES (98765, 4);
 INSERT INTO Administrador (matricula_professor, id_processoSeletivo) VALUES (11111, 5);
+INSERT INTO Administrador (matricula_professor, id_processoSeletivo) VALUES (67890, 6);
 
 
 -- CANDIDATURA
@@ -130,6 +132,7 @@ CREATE TABLE Candidatura (
 );
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (12345, 1, '2023-06-10 09:30:00');
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (12345, 2, '2023-06-10 09:30:00');
+INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (12345, 6, '2023-06-10 09:30:00');
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (67890, 1, '2023-06-12 14:45:00');
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (54321, 2, '2023-08-05 11:00:00');
 INSERT INTO Candidatura (matricula_aluno, id_processoSeletivo, data) VALUES (98765, 3, '2023-07-25 16:20:00');

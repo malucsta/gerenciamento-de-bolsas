@@ -43,11 +43,11 @@ export default class AlunoController {
         }
     }
 
-    @Get(':id')
+    @Get(':matricula')
     public async findOne(req: Request, res: Response) {
         try {
-            const id = Number(req.params.id)
-            const result = await this.alunoService.findOne(id);
+            const matricula = Number(req.params.matricula)
+            const result = await this.alunoService.findOne(matricula);
             return res.status(200).json(result);
 
         } catch (error) {
