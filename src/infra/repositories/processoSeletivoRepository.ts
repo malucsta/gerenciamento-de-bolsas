@@ -32,6 +32,16 @@ export class ProcessoSeletivoRepository {
         }
     }
 
+    async findAll() {
+        try {
+            const result = (await pool.query('SELECT * FROM ProcessoSeletivo ')).rows
+            return result
+        } catch (error) {
+            console.error('Error executing query:', error);
+            throw error
+        }
+    }
+
     async desactivate(processoSeletivoId: number) {
         try {
             await pool.query(`UPDATE ProcessoSeletivo SET ativo = false WHERE id = $1;`, [processoSeletivoId])
