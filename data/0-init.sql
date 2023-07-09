@@ -24,7 +24,9 @@ INSERT INTO Professor (matricula, cpf, nome, id_instituto) VALUES (67890, '98765
 INSERT INTO Professor (matricula, cpf, nome, id_instituto) VALUES (54321, '56789012345', 'David Johnson', 3);
 INSERT INTO Professor (matricula, cpf, nome, id_instituto) VALUES (98765, '90123456789', 'Emily Davis', 4);
 INSERT INTO Professor (matricula, cpf, nome, id_instituto) VALUES (11111, '11111111111', 'Robert Wilson', 5);
-
+-- CREATE UNIQUE INDEX cpf_idx ON Professor USING BTREE (cpf);
+-- CREATE UNIQUE INDEX instituto_cpf_idx ON Professor USING BTREE (id_instituto, cpf);
+-- CREATE UNIQUE INDEX instituto_matricula_idx ON Professor USING BTREE (id_instituto, matricula);
 
 -- ALUNO
 CREATE TABLE Aluno (
@@ -39,7 +41,9 @@ INSERT INTO Aluno (matricula, cpf, nome, id_instituto) VALUES (67890, '987654321
 INSERT INTO Aluno (matricula, cpf, nome, id_instituto) VALUES (54321, '56789012345', 'David Johnson', 3);
 INSERT INTO Aluno (matricula, cpf, nome, id_instituto) VALUES (98765, '90123456789', 'Emily Davis', 4);
 INSERT INTO Aluno (matricula, cpf, nome, id_instituto) VALUES (11111, '11111111111', 'Robert Wilson', 5);
-
+CREATE UNIQUE INDEX cpf_idx ON Aluno USING BTREE (cpf);
+CREATE UNIQUE INDEX instituto_cpf_idx ON Aluno USING BTREE (id_instituto, cpf);
+CREATE UNIQUE INDEX instituto_matricula_idx ON Aluno USING BTREE (id_instituto, matricula);
 
 -- GRUPO BOLSA	
 CREATE TABLE GrupoBolsa (
@@ -57,6 +61,9 @@ INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante
 INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES ('Business Internship', 800, 6, 5, '2023-07-15', '2024-02-28');
 INSERT INTO GrupoBolsa (nome, remuneracao, quantidade_total, quantidade_restante, data_inicio, data_fim) VALUES ('Science Research Grant', 1200, 3, 2, '2023-10-01', '2024-03-31');
 
+CREATE INDEX data_inicio_idx ON GrupoBolsa USING BTREE (data_inicio);
+CREATE INDEX data_fim_idx ON GrupoBolsa USING BTREE (data_fim);
+--CREATE INDEX matriculaOrientador_data_inicio_idx ON GrupoBolsa USING BTREE (matriculaOrientador, data_inicio, data_fim);
 
 -- ORIENTADOR
 CREATE TABLE Orientador (
@@ -104,6 +111,9 @@ INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa) VALUES (4, '2
 INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa) VALUES (5, '2023-10-15', '2023-12-15', 5);
 INSERT INTO ProcessoSeletivo (id, data_inicio, data_fim, id_bolsa, ativo) VALUES (6, '2023-01-01', '2023-01-15', 5, false);
 
+CREATE INDEX id_bolsa_idx ON ProcessoSeletivo USING BTREE (id_bolsa);
+CREATE INDEX data_fim_processo_seletivo_idx ON ProcessoSeletivo USING BTREE (data_fim);
+CREATE INDEX data_inicio_data_fim_idx ON ProcessoSeletivo USING BTREE (data_inicio, data_fim);
 
 -- ADMINISTRADOR
 CREATE TABLE Administrador (
