@@ -39,6 +39,17 @@ export default class ProcessoSeletivoController {
         }
     }
 
+    @Get("getAll")
+    public async findAll(req: Request, res: Response) {
+        try {
+            const result = await this.processoSeletivoService.findAll();
+            return res.status(200).json(result);
+
+        } catch (error) {
+            return res.status(500).json({ errorMessage: error });
+        }
+    }
+
     @Post('admit')
     public async admit(req: Request, res: Response) {
         try {
